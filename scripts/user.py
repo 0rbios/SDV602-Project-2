@@ -1,0 +1,1 @@
+# The user who is logged in to the application.

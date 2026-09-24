@@ -1,0 +1,1 @@
+# The entrypoint into the application, parses any CLI arguments, establishes starting values and runs the application.

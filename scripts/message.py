@@ -1,0 +1,1 @@
+# A message sent by a user in a chat in a session.

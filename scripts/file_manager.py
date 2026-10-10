@@ -1,5 +1,7 @@
 # Loads data from files and manages them.
 import os
+import csv
+
 class FileManager:
 	def __init__(self):
 		self.internal_db = []
@@ -11,20 +13,39 @@ class FileManager:
 
 		compiled_result = []
 
+		compiled_name = ""
+		present_files = 0
+
 		for file in self.internal_db:
 			if file["dataset"] == dataset:
-				compiled_result.append(file["data"])
-    
-		return compiled_result
+				compiled_result.extend(file["data"])
+
+				if compiled_name == "":
+					compiled_name = file["filename"]
+				else:
+					present_files += 1
+
+		if present_files > 0:
+			compiled_name += f" + {present_files} other(s)"
+	
+		return {compiled_name: compiled_result}
 
 	def load_data_source(self, filepath, dataset):
 		if dataset not in self.datasets:
 			return "Invalid dataset"
-    
+
+		data = []
+	
 		try:
 			with open(filepath) as File:
 				filename = os.path.basename(filepath)
-				data = File.readlines()
+
+				reader = csv.DictReader(File)
+
+				data = []
+				for row in reader:
+					data.append(row)
+
 				data_packet = {"filename": filename, "dataset": dataset, "data": data}
 				self.internal_db.append(data_packet)
 				return "File loaded successfully"

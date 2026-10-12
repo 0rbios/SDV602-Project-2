@@ -1,3 +1,8 @@
+> Commit: User integration
+>
+> - Creating an account now automatically sets the user to the newly created one
+> - Sending a chat message now takes a user object and extracts the name from that
+
 > Commit: Accounts
 >
 > - Created a user class to store the currently signed in user

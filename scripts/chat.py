@@ -6,7 +6,7 @@ class Chat:
 		self.messages = []
    
 	def send_message(self, sender, contents):
-		self.messages.append(Message(sender, contents))
+		self.messages.append(Message(sender.username, contents))
   
 	def get_messages(self):
 		output = ""

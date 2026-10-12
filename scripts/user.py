@@ -21,6 +21,7 @@ class User:
 		if existing_user_check:
 			return "User already exists"
 
+		self.username = username
 		return self.db.create_user(username, self.get_hash(password))
 
 	def log_in_user(self, username, password):

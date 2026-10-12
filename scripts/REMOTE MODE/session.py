@@ -1,1 +1,0 @@
-# A session being hosted with its own chat, data and users.

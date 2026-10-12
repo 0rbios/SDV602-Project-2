@@ -6,19 +6,27 @@ if __name__ == "__main__":
 	session = Session("Test Session", remote=True)
 	dd = DataDisplay()
  
+	# session.send_message("Test User", "This is a test")
+
+	# session.send_message("Test User 2", "And another message")
+ 
+	# session.send_message("Test User", "Hello World")
+ 
+	# print(session.get_messages())
+ 
 	# print(session.new_dataset("test"))
  
 	# print(session.add_datasource("C:/Users/dyfry/Downloads/bd-natural-increase-2010-2014.csv", "test"))
  
-	dd.generate_chart_line(session.compile_dataset("test"), "Period", "Count", "Births_Deaths_or_Natural_Increase")
+	# dd.generate_chart_line(session.compile_dataset("test"), "Period", "Count", "Births_Deaths_or_Natural_Increase")
  
 	# print(session.add_datasource("C:/Users/dyfry/Downloads/bd-natural-increase-2015-2019.csv", "test"))
   
-	dd.generate_chart_line(session.compile_dataset("test"), "Period", "Count", "Births_Deaths_or_Natural_Increase")
+	# dd.generate_chart_line(session.compile_dataset("test"), "Period", "Count", "Births_Deaths_or_Natural_Increase")
 
-	dd.generate_chart_pie(session.compile_dataset("test"), "Count", "Period", "Births_Deaths_or_Natural_Increase", "Natural_Increase")
+	# dd.generate_chart_pie(session.compile_dataset("test"), "Count", "Period", "Births_Deaths_or_Natural_Increase", "Natural_Increase")
    
-	dd.generate_chart_bar(session.compile_dataset("test"),  "Period", "Count", "Births_Deaths_or_Natural_Increase")
+	# dd.generate_chart_bar(session.compile_dataset("test"),  "Period", "Count", "Births_Deaths_or_Natural_Increase")
 
 	# print(session.remove_datasource("bd-natural-increase-2010-2014.csv", "test"))
  

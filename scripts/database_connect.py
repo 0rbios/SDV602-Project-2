@@ -1,6 +1,7 @@
 #  Connects to the database and saves/loads data.
 from pymongo import MongoClient
 import config
+from message import Message
 
 class DatabaseConnection:
 	def __init__(self):
@@ -14,7 +15,12 @@ class DatabaseConnection:
 		if not session:
 			return "Invalid session"
   
-		formatted_data = { "session": session.session_name, "datasets": session.files.internal_db }
+		messages = []
+  
+		for message in session._chat.messages:
+			messages.append({"sender": message.sender, "contents": message.contents})
+  
+		formatted_data = { "session": session.session_name, "datasets": session._files.internal_db, "chat":  messages}
   
 		return self.get_collection(config.SESSION_COLLECTION).find_one_and_replace({"session": session.session_name}, formatted_data, upsert=True)
 
@@ -28,13 +34,18 @@ class DatabaseConnection:
 			return "No corelating session in database"
 
 		pulled_datasets = []
+		pulled_messages = []
 	
 		for datasource in pulled_data['datasets']:
 			if datasource['dataset'] not in pulled_datasets:
 				pulled_datasets.append(datasource['dataset'])
-	
+		
+		for message in pulled_data["chat"]:
+			pulled_messages.append(Message(message['sender'], message['contents']))
+ 
 		session.session_name = pulled_data['session']
-		session.files.datasets = pulled_datasets
-		session.files.internal_db = pulled_data['datasets']
+		session._files.datasets = pulled_datasets
+		session._files.internal_db = pulled_data['datasets']
+		session._chat.messages = pulled_messages
 
 		return "Session pulled successfully"

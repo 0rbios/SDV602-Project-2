@@ -1,3 +1,11 @@
+> Commit: Chat system
+>
+> - Created a chat class which creates and holds messages
+> - Created a message class which hold information about a message
+> - Fixed an incorrect reference to files in the database connection class
+> - Sessions now have a chat which they control to also connect chat to the database
+> - Chat messages are also now pushed and pulled from/to the database
+
 > Commit: Data management unification
 >
 > - A session now has a database manager if it is set as remote when created

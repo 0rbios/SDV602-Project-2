@@ -1,6 +1,7 @@
 # A session being hosted with its own chat, data and users.
 from file_manager import FileManager
 from database_connect import DatabaseConnection
+from chat import Chat
 
 class Session:
 	def __init__(self, name, remote = False):
@@ -8,8 +9,11 @@ class Session:
 		self._files = FileManager()
 		
 		self.db = None
+		self._chat = None
   
 		if remote == True:
+			self._chat = Chat()
+     
 			self.db = DatabaseConnection()
 			self.db.pull_data(self)
    
@@ -58,3 +62,18 @@ class Session:
 			self.db.pull_data(self)
     
 		return self._files.compile_dataset(dataset)
+
+	def send_message(self, sender, contents):
+		if self._chat and self.db:
+			self._chat.send_message(sender, contents)
+			self.db.push_data(self)
+			return "Message sent"
+
+		return "Messages can only be sent in remote sessions"
+
+	def get_messages(self):
+		if self._chat and self.db:
+			self.db.pull_data(self)
+			return self._chat.get_messages()
+
+		return "Messages can only be accessed in remote sessions"

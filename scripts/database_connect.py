@@ -1,6 +1,5 @@
 #  Connects to the database and saves/loads data.
 from pymongo import MongoClient
-from session import Session
 import config
 
 class DatabaseConnection:
@@ -11,7 +10,7 @@ class DatabaseConnection:
 	def get_collection(self, collection):
 		return self.client[config.DB_NAME][collection]
    
-	def push_data(self, session: Session):
+	def push_data(self, session):
 		if not session:
 			return "Invalid session"
   
@@ -19,7 +18,7 @@ class DatabaseConnection:
   
 		return self.get_collection(config.SESSION_COLLECTION).find_one_and_replace({"session": session.session_name}, formatted_data, upsert=True)
 
-	def pull_data(self, session: Session):
+	def pull_data(self, session):
 		if not session:
 			return "Invalid session"
 

@@ -1,3 +1,10 @@
+> Commit: Data management unification
+>
+> - A session now has a database manager if it is set as remote when created
+> - The file manager is now interacted with through the session functions which also run database functions if available
+> - Graph generation now uses a try statement to catch any issues with data compilation
+> - Renamed the files variable in session to \_files to avoid accidental usage since it should only be used through the session
+
 > Commit: Database connection
 >
 > - Moved remote mode files into main folder

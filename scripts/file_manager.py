@@ -9,7 +9,7 @@ class FileManager:
 
 	def compile_dataset(self, dataset):
 		if dataset not in self.datasets:
-			return "Invalid tag"
+			return"Invalid tag"
 
 		compiled_result = []
 

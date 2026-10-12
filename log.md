@@ -1,3 +1,10 @@
+> Commit: Session manager
+>
+> - Created session manager class to manage multiple sessions
+> - Added function to database connection class to retrieve all sessions
+> - Added function to session manager to select a session
+> - Adjusted the session manager to hold a list of sessions
+
 > Commit: User integration
 >
 > - Creating an account now automatically sets the user to the newly created one

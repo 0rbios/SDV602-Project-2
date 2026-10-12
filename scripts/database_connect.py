@@ -49,3 +49,6 @@ class DatabaseConnection:
 		session._chat.messages = pulled_messages
 
 		return "Session pulled successfully"
+
+	def get_all_sessions(self):
+		return self.get_collection(config.SESSION_COLLECTION).find()

@@ -1,8 +1,14 @@
 # The entrypoint into the application, parses any CLI arguments, establishes starting values and runs the application.
 from session import Session
 from data__displayer import DataDisplay
+from user import User
 
 if __name__ == "__main__":
+	user = User()
+	
+	# user.register_user("Test User", "Password123")
+	# user.log_in_user("Test User", "Password123")
+ 
 	session = Session("Test Session", remote=True)
 	dd = DataDisplay()
  

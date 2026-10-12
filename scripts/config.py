@@ -5,3 +5,4 @@ MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017")
 
 DB_NAME = "des_app"
 SESSION_COLLECTION = "sessions"
+USER_COLLECTION = "users"

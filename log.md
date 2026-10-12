@@ -1,3 +1,9 @@
+> Commit: Accounts
+>
+> - Created a user class to store the currently signed in user
+> - Database connection class now has functions to create and retrieve users
+> - Seperated the user database connection into its own class to seperate responsibilities
+
 > Commit: Chat system
 >
 > - Created a chat class which creates and holds messages

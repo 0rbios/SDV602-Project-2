@@ -7,7 +7,9 @@ class User:
 		self.username = None
 		self.db = UserManager()
 
+
 	def get_hash(self, password):
+		"""Hashes a given string."""
 		bytes = password.encode('utf-8')
 
 		salt = bcrypt.gensalt()
@@ -15,7 +17,9 @@ class User:
   
 		return hash
 
+
 	def register_user(self, username, password):
+		"""Creates a new user in the remote database and sets the user object to them."""
 		existing_user_check = self.db.find_user(username)
   
 		if existing_user_check:
@@ -24,7 +28,9 @@ class User:
 		self.username = username
 		return self.db.create_user(username, self.get_hash(password))
 
+
 	def log_in_user(self, username, password):
+		"""Finds the given username in the database, checks if the password hashes match and then sets the user object to it."""
 		found_user = self.db.find_user(username)
 
 		if not found_user:

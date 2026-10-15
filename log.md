@@ -1,3 +1,15 @@
+> Commit: Headless mode (basic run through)
+>
+> - Added remote flag to app.py
+> - Added headless flag to app.py
+> - Created Headless class which stores a series of commands and their arguments
+> - app.py can now run through all of the commands in headless.py if the headless flag is active
+> - Removed existence check from the join_session function
+> - Changed the join_session function in the session manager to have a more descriptive name or join_or_create_session
+> - Newly created sessions now also push themselves to the database after pulling
+> - Added docstrings to all functions
+> - Fixed an issue with dataset renaming not properly applying
+
 > Commit: Session manager
 >
 > - Created session manager class to manage multiple sessions

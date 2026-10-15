@@ -7,7 +7,8 @@ class SessionManager:
 		self.sessions = []
 		self.db = DatabaseConnection()
 
-	def get_sessions(self):
+	def get_remote_sessions(self):
+		"""Retrieves and returns the names of all remote sessions being stored in the database."""
 		session_list = []
 		retrieved_sessions = self.db.get_all_sessions()
 
@@ -19,9 +20,7 @@ class SessionManager:
 
 		return session_list
 
-	def join_session(self, session_name):
-		if session_name not in self.get_sessions():
-			return "Session does not exist"
-
+	def join_or_create_session(self, session_name):
+		"""Creates a new session in the sessions list, if the session exists in the database it will find itself."""
 		self.sessions.append(Session(session_name, True))
 		return f"Successfully joined session: '{session_name}'"

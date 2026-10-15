@@ -4,6 +4,7 @@ from operator import itemgetter
 
 class DataDisplay:
 	def generate_chart_line(self, data, x_key, y_key, series_key=None):
+		"""Creates a line chart from the given settings."""
 		try:
 			if not next(iter(data.values())):
 				print("No data to plot!")
@@ -39,7 +40,9 @@ class DataDisplay:
 		except:
 			return "Graph failed to plot"
 
+
 	def generate_chart_pie(self, data, value_key, label_key, series_key, get_series):
+		"""Creates a pie chart from the given settings."""
 		try:
 			if not next(iter(data.values())):
 				print("No data to plot!")
@@ -59,7 +62,9 @@ class DataDisplay:
 		except:
 			return "Graph failed to plot"
 
+
 	def generate_chart_bar(self, data, x_key, y_key, series_key):
+		"""Creates a bar chart from the given settings."""
 		try:
 			if not next(iter(data.values())):
 				print("No data to plot!")

@@ -7,9 +7,11 @@ class FileManager:
 		self.internal_db = []
 		self.datasets = []
 
+
 	def compile_dataset(self, dataset):
+		"""Combines all data from the internal database which is linked to the given dataset."""
 		if dataset not in self.datasets:
-			return"Invalid tag"
+			return f"Invalid tag: '{dataset}'"
 
 		compiled_result = []
 
@@ -30,7 +32,9 @@ class FileManager:
 	
 		return {compiled_name: compiled_result}
 
+
 	def load_data_source(self, filepath, dataset):
+		"""Takes a path to a CSV file, reads its data and adds it to the internal database linked to the given dataset."""
 		if dataset not in self.datasets:
 			return "Invalid dataset"
 
@@ -39,6 +43,9 @@ class FileManager:
 		try:
 			with open(filepath) as File:
 				filename = os.path.basename(filepath)
+
+				if not filepath.endswith(".csv"):
+					return "Invalid file type"
 
 				reader = csv.DictReader(File)
 
@@ -53,14 +60,18 @@ class FileManager:
 		except:
 			return "File not found "
  
+ 
 	def create_dataset(self, dataset):
+		"""Add a new dataset to the internal dataset list."""
 		if dataset in self.datasets:
 			return "Dataset already exists"
 
 		self.datasets.append(dataset)
 		return "Dataset created successfully"
  
+ 
 	def remove_dataset(self, dataset):
+		"""Remove a given dataset from the internal dataset list."""
 		if dataset not in self.datasets:
 			return "Dataset not found"
 
@@ -69,7 +80,9 @@ class FileManager:
 
 		return "Dataset removed successfully"
  
+ 
 	def rename_dataset(self, dataset, new_name):
+		"""Changes the given dataset to the new name in both the internal dataset list and each reference in the internal database."""
 		if dataset not in self.datasets:
 			return "Dataset not found"
 
@@ -79,10 +92,15 @@ class FileManager:
 		self.datasets.remove(dataset)
 		self.datasets.append(new_name)
 
-		return "Dataset updated correctly"
+		for datasource in self.internal_db:
+			if datasource["dataset"] == dataset:
+				datasource["dataset"] = new_name
+
+		return "Dataset name updated successfully"
  
-	# Remove a data source from the internal db
+ 
 	def remove_data_source(self, filename, dataset):
+		"""Removes a given file's data (e.g. file.csv), which is linked to the given dataset, from the internal database."""
 		if dataset not in self.datasets:
 			return "Dataset not found"
 		

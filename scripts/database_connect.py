@@ -8,10 +8,14 @@ class DatabaseConnection:
 		self.client = MongoClient(config.MONGO_URI)
 		self.client.admin.command("ping")
    
+   
 	def get_collection(self, collection):
+		"""Retrieve a specific collection from the remote database."""
 		return self.client[config.DB_NAME][collection]
    
+   
 	def push_data(self, session):
+		"""Attempt to replace the remote data for the current session with the local data of the current session. If the session does not exist, a new one will be created."""
 		if not session:
 			return "Invalid session"
   
@@ -24,7 +28,9 @@ class DatabaseConnection:
   
 		return self.get_collection(config.SESSION_COLLECTION).find_one_and_replace({"session": session.session_name}, formatted_data, upsert=True)
 
+
 	def pull_data(self, session):
+		"""Attempts to retrieve the data for the current session and assign it back onto itself, effectively updating it to match the remote data."""
 		if not session:
 			return "Invalid session"
 
@@ -50,5 +56,7 @@ class DatabaseConnection:
 
 		return "Session pulled successfully"
 
+
 	def get_all_sessions(self):
+		"""Retrieves all session documents from the remote database."""
 		return self.get_collection(config.SESSION_COLLECTION).find()

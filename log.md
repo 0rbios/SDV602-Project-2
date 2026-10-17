@@ -1,3 +1,10 @@
+> Commit: Added verbose headless testing mode
+>
+> - Removed data display import from headless.py
+> - Changed headless testing from using individual modules to taking one app object
+> - Gave the headless testing a verbose argument
+> - Each headless test now has extra information if verbose mode is used
+
 > Commit: Headless mode (basic run through)
 >
 > - Added remote flag to app.py

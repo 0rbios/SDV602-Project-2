@@ -67,7 +67,7 @@ class Session:
 		if self.db:
 			self.db.push_data(self)
   
-		return f"Datasource '{old_name}' successfully renamed to '{new_name}'"
+		return f"Dataset '{old_name}' successfully renamed to '{new_name}'"
 
 
 	def compile_dataset(self, dataset):
